@@ -1,0 +1,49 @@
+from groq import Groq
+from textwrap import fill
+
+# ==============================
+# CONFIG
+# ==============================
+API_KEY = "YOUR_API_KEY"
+MODEL = "llama-3.3-70b-versatile"
+
+client = Groq(api_key=API_KEY)
+
+# ==============================
+# FUNCTIONS
+# ==============================
+def format_output(text, width=80):
+    lines = text.split("\n")
+    formatted = "\n".join([fill(line, width=width) for line in lines])
+    return formatted
+
+def recommend_movies(mood, genre, language, era):
+    system_prompt = (
+        "You are a movie recommendation expert. "
+        "Suggest engaging and popular movies based on user preferences. "
+        "Keep it concise and interesting."
+    )
+
+    user_prompt = f"""
+    Mood: {mood}
+    Genre: {genre}
+    Language: {language}
+    Era: {era}
+
+    Recommend 6 movies.
+    For each movie include:
+    - Title
+    - Short one-line description
+    """
+
+    response = client.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ],
+        temperature=0.8,
+        max_tokens=400
+    )
+
+    return format_output(response.choices[0].message.content.strip())
