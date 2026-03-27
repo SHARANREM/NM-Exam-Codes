@@ -1,1 +1,5 @@
-pip install groq
+pip install groq gradio
+
+APIS
+Sharan - gsk_xzVjjMRrSMGExJERYp3cWGdybSharan3FY6qle1duRYnSin5xbbPzo2qfx or gsk_Ac8CZ9CNA5lRkvy3dq1iWGdSharanyb3FYtHJSBOOovI0k5P1xlRs04FZN
+Santhosh - gsk_zZbRlNWoMvkEGcVkGqvnWGSanthoshdyb3FYOz6QRlyRD3Zf4Y85LiMXrEA9
